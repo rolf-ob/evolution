@@ -2,11 +2,11 @@ import pygame as py
 import math
 
 from core.spatial import world_to_screen
-from constants import FPS
+from constants import FPS, DAYNIGHT_CYCLE_SECONDS
 
 def draw(game):
     screen = game.screen
-    light = 127.5 * (1 - math.cos(2 * math.pi * 0.05 * (game.time / FPS)))
+    light = 127.5 * (1 - math.cos(2 * math.pi * (1 / DAYNIGHT_CYCLE_SECONDS) * (game.time / FPS)))
     screen.fill((0, 0, light))
 
     for plant in game.plants:

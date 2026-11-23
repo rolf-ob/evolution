@@ -1,4 +1,5 @@
 import pygame as py
+import random as ran
 
 from core.input import handle_input
 from core.physics import update
@@ -20,9 +21,22 @@ class Game:
 
         self.time = 0
 
-        self.plants = [Plant(100, 0, 0)]
-        self.herbivores = [Herbivore(0, 0, 5, 5, 5)]
-        self.carnivores = [Carnivore(-100, 0, 5, 5, 5)]
+        self.plants = [
+            Plant(ran.randint(-600, 600), ran.randint(-300, 300), 0, ran.randint(10, 30))
+            for _ in range(100)
+        ]
+
+        self.herbivores = [
+            Herbivore(
+                ran.randint(-600, 600), ran.randint(-300, 300),
+                sleep=100,
+                food=40,
+                lust=70,
+                sight=80
+            )
+            for _ in range(10)
+        ]
+        self.carnivores = [Carnivore(-100, 0, 100, 5, 5, 40)]
 
         self.running = True
 
